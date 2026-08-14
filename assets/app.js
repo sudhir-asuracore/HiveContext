@@ -1,4 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const primaryNavigation = document.getElementById('primary-navigation');
+
+  if (menuToggle && primaryNavigation) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      primaryNavigation.classList.toggle('is-open', !isOpen);
+    });
+
+    primaryNavigation.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        primaryNavigation.classList.remove('is-open');
+      });
+    });
+
+    // Scroll spy: Highlight menu item based on which section is in view
+    const navLinks = primaryNavigation.querySelectorAll('a[href^="#"]');
+    const sections = Array.from(navLinks)
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    function onScroll() {
+      const scrollPos = window.scrollY + 140;
+      let activeSectionId = null;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.offsetTop <= scrollPos) {
+          activeSectionId = section.getAttribute('id');
+          break;
+        }
+      }
+
+      if (!activeSectionId && sections.length > 0) {
+        activeSectionId = sections[0].getAttribute('id');
+      }
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href').replace('#', '');
+        if (href === activeSectionId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // initial check
+  }
+
   // Live demo simulation state
   const stageAnalyze = document.getElementById('stage-analyze');
   const stageConflict = document.getElementById('stage-conflict');

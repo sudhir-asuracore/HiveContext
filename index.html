@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="HiveContext — Organization-Level Collective AI Agent Memory on CockroachDB & AWS FastMCP">
+  <meta name="description" content="HiveContext is a governed, organization-level procedural memory system for AI engineering teams.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="HiveContext — Collective Memory for AI Agent Teams">
+  <meta property="og:description" content="Turn approved team conventions, decisions, and incident learnings into retrievable context for AI agents.">
+  <meta property="og:type" content="website">
   <title>HiveContext — Collective Memory System for AI Agent Teams</title>
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/app.js" defer></script>
@@ -17,7 +21,11 @@
       <a class="brand" href="/" aria-label="HiveContext home">
         <span class="tag">H/</span> HiveContext
       </a>
-      <nav aria-label="Primary Navigation">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="menu-toggle-label">Menu</span>
+        <span class="menu-toggle-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="primary-navigation" aria-label="Primary Navigation">
         <a href="#overview">Overview</a>
         <a href="#taxonomy">Memory Taxonomy</a>
         <a href="#demo">Live Memory Loop</a>
@@ -25,10 +33,6 @@
         <a href="#repositories">Modules</a>
         <a href="#setup">Setup Guide</a>
       </nav>
-      <div class="topbar-actions">
-        <span class="system-badge"><span class="pulse"></span> CockroachDB Vector Cluster: Active</span>
-        <a class="btn btn-primary" href="https://github.com/sudhir-asuracore/HiveContext">GitHub Hub</a>
-      </div>
     </div>
   </header>
 
@@ -44,7 +48,7 @@
               <em>HiveContext gives your team a collective brain.</em>
             </h1>
             <p class="lede">
-              A safety-gated, multi-tenant agent memory layer backed by <strong>CockroachDB pgvector</strong> and <strong>AWS Lambda FastMCP compute</strong>—enforcing human-in-the-loop governance before critical rules and ADRs mutate.
+              A governed, multi-tenant memory layer backed by <strong>CockroachDB pgvector</strong> and <strong>AWS Lambda FastMCP compute</strong>. Capture the decisions your agents make, review them with your team, and retrieve approved context on the next task.
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#demo">Explore Live Interactive Loop</a>
@@ -53,16 +57,44 @@
           </div>
 
           <div class="hero-aside">
-            <div class="bracket-box equation-card">
-              <span class="title">RECALL &amp; POLICY INVARIANT EQUATION</span>
-              <code>
-                0.60 semantic similarity<br>
-                + 0.25 scope isolation<br>
-                + 0.15 human approval status
-              </code>
-              <p>
-                Strict multi-tenant boundaries are verified before ranking. High similarity scores can never cross a tenant space or unapproved safety gate.
-              </p>
+            <div class="memory-role-stack">
+              <!-- Short-Term Memory -->
+              <div class="memory-role-box">
+                <div class="memory-role-header">
+                  <span class="role-title">1. Short-Term Memory</span>
+                  <span class="role-tag">Local RAM</span>
+                </div>
+                <div class="role-desc">Working conversation scratchpad, prompt AST diffs, and immediate session buffer.</div>
+              </div>
+
+              <!-- Semantic Memory -->
+              <div class="memory-role-box">
+                <div class="memory-role-header">
+                  <span class="role-title">2. Semantic Memory</span>
+                  <span class="role-tag">Local Vector Index</span>
+                </div>
+                <div class="role-desc">Codebase token definitions, language semantics, and local file grep embeddings.</div>
+              </div>
+
+              <!-- Episodic Memory -->
+              <div class="memory-role-box">
+                <div class="memory-role-header">
+                  <span class="role-title">3. Episodic Memory</span>
+                  <span class="role-tag">Agent Session DB</span>
+                </div>
+                <div class="role-desc">Historical timeline of what a single developer's agent worked on in past branch tasks.</div>
+              </div>
+
+              <!-- Procedural Memory (HiveContext Highlighted) -->
+              <div class="memory-role-box highlight-hive">
+                <div class="memory-role-header">
+                  <span class="role-title">4. Procedural Memory (HiveContext)</span>
+                  <span class="role-tag">CockroachDB + FastMCP</span>
+                </div>
+                <div class="role-desc">
+                  <strong>The collective intelligence layer:</strong> Governed ADRs, conventions, infrastructure rules, and post-mortems shared across all 10+ agents on the team.
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -76,7 +108,7 @@
           <p class="eyebrow">01 / THE AGENT MEMORY TAXONOMY</p>
           <h2 class="section-title" id="taxonomy-title">Local Agent Memory vs. HiveContext Procedural Memory</h2>
           <p class="section-desc">
-            Single-agent memory operates in an isolated silo. HiveContext introduces organization-level <strong>procedural memory</strong> to enhance the collective intelligence of every developer's AI assistant.
+            Agent memory can be described as <strong>4 distinct parts</strong> based on their roles: Short-Term, Semantic, Episodic, and Procedural. While individual agents manage local working state and session history, <strong>HiveContext powers the collective intelligence layer</strong>—sharing approved procedural intelligence across all agents so entire engineering teams operate as a unified, smarter brain.
           </p>
         </div>
 
@@ -119,50 +151,60 @@
           </table>
         </div>
 
-        <!-- 10-Engineer Scenario Comparison -->
+        <!-- Real-World Engineering Scenario: Economics & Consistency -->
         <div class="scenario-grid">
           <div class="scenario-card silo">
+            <div class="scenario-tag">Isolated AI Agents (No Collective Memory)</div>
             <h3 style="color: #ef4444;">
-              <span>❌</span> Without HiveContext (Isolated Agent Silos)
+              <span>⚠️</span> Mid-Sized Product Team: Linear Token Multipliers
             </h3>
             <p>
-              Imagine 10 software engineers working on the same monorepo with isolated agent memories:
+              When a team of 10 engineers each prompt frontier LLMs across separate sessions without a shared memory layer:
             </p>
+            <div class="token-math-box">
+              <strong>Token Burn Equation:</strong><br>
+              (X tokens exploring ADRs &amp; rules + Y tokens hitting known pitfalls) × N agents × S sessions = <strong>Massive redundant token spend</strong>
+            </div>
             <ul>
               <li>
-                <span class="icon">⚠️</span>
-                <span><strong>Repeated Trial &amp; Error:</strong> Engineer #1's agent spends 30 mins fixing a database retry bug. Tomorrow, Engineer #4's agent repeats the exact same painful experimentation.</span>
+                <span class="icon">💸</span>
+                <span><strong>Redundant Exploration:</strong> Every agent re-derives architectural guardrails, queries the entire repo for patterns, and spends thousands of tokens rediscovering known decisions.</span>
               </li>
               <li>
-                <span class="icon">💸</span>
-                <span><strong>Massive Token Waste:</strong> Repetitive cycles of hallucination, undoing, redoing, and fixing errors across team sessions.</span>
+                <span class="icon">🔄</span>
+                <span><strong>Repeated Failure Cycles:</strong> An infrastructure bug or nuance resolved by Engineer #1 on Monday is re-encountered and re-debugged by Engineer #5 on Thursday.</span>
               </li>
               <li>
                 <span class="icon">⚡</span>
-                <span><strong>Architectural Drift:</strong> Different agents produce fragmented, incompatible conventions and inconsistent patterns.</span>
+                <span><strong>Architectural Drift:</strong> Independent agents introduce conflicting conventions, divergent frameworks, and fractured code styles across the codebase.</span>
               </li>
             </ul>
           </div>
 
           <div class="scenario-card hive">
+            <div class="scenario-tag">HiveContext Procedural Intelligence</div>
             <h3 style="color: #10b981;">
-              <span>🐝</span> With HiveContext (Procedural Collective Intelligence)
+              <span>🐝</span> With HiveContext: Reusable Context &amp; Strict Consistency
             </h3>
             <p>
-              A single shared intelligence ledger powering all 10 developer assistants:
+              A single governed memory ledger stores trusted ADRs, conventions, infrastructure specs, and post-mortems:
             </p>
+            <div class="token-math-box">
+              <strong>Procedural ROI Equation:</strong><br>
+              1 validated entry in CockroachDB → Single-turn RAG retrieval (&lt; 200 tokens) across all 10+ agents = <strong>Linear cost reduction</strong>
+            </div>
             <ul>
               <li>
-                <span class="icon">✨</span>
-                <span><strong>Single-Step Convergence:</strong> When Engineer #1's agent resolves a tricky issue, it persists a governed post-mortem or convention.</span>
-              </li>
-              <li>
                 <span class="icon">🛡️</span>
-                <span><strong>Smarter Targeted Brain:</strong> Seconds later, Engineer #4's agent executes a pre-task search and instantly applies the proven fix.</span>
+                <span><strong>Guaranteed Consistency:</strong> Approved coding standards, guardrails, and architectural choices are injected directly on the first turn of every agent task.</span>
               </li>
               <li>
-                <span class="icon">🚀</span>
-                <span><strong>Maximized Velocity:</strong> Directly cuts token consumption, removes undo-redo loops, and ensures strict org-wide consistency.</span>
+                <span class="icon">🎯</span>
+                <span><strong>Zero Recurring Mistakes:</strong> Incident post-mortems and infrastructure gotchas are shared globally—preventing repeated trial-and-error debugging cycles.</span>
+              </li>
+              <li>
+                <span class="icon">📉</span>
+                <span><strong>Dramatically Lower Token Bills:</strong> Eliminates lengthy prompting iterations, full codebase AST diff scans, and painful undo-redo-fixing loops across the team.</span>
               </li>
             </ul>
           </div>
@@ -174,29 +216,29 @@
     <section id="invariants" aria-labelledby="metrics-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">02 / MEASURABLE INVARIANTS</p>
-          <h2 class="section-title" id="metrics-title">Engineered for resiliency &amp; scale.</h2>
+          <p class="eyebrow">02 / PRODUCT GUARANTEES</p>
+          <h2 class="section-title" id="metrics-title">Knowledge your team can trust.</h2>
         </div>
         <div class="metrics-grid">
           <div class="metric-item bracket-box">
-            <span class="label">Multi-Tenant Isolation</span>
-            <div class="value">100%</div>
-            <span class="subtext">Hardware + row-level spaces</span>
+            <span class="label">Memory Scope</span>
+            <div class="value">Global / Project</div>
+            <span class="subtext">Share standards broadly or constrain them to a project.</span>
           </div>
           <div class="metric-item bracket-box">
-            <span class="label">Vector Recall Latency</span>
-            <div class="value">&lt; 15ms</div>
-            <span class="subtext">CockroachDB HNSW index</span>
+            <span class="label">Review State</span>
+            <div class="value">Pending → Approved</div>
+            <span class="subtext">Human review controls what agents can retrieve.</span>
           </div>
           <div class="metric-item bracket-box">
-            <span class="label">Duplicate Prevention</span>
-            <div class="value">94.8%</div>
-            <span class="subtext">Cosine conflict detection</span>
+            <span class="label">Conflict Signals</span>
+            <div class="value">Semantic</div>
+            <span class="subtext">Surface potentially competing guidance for review.</span>
           </div>
           <div class="metric-item bracket-box">
-            <span class="label">Token Waste Eliminated</span>
-            <div class="value">0</div>
-            <span class="subtext">Direct context injection</span>
+            <span class="label">Memory Lifecycle</span>
+            <div class="value">Soft Delete</div>
+            <span class="subtext">Retain an auditable path before scheduled cleanup.</span>
           </div>
         </div>
       </div>
@@ -279,7 +321,7 @@ Submit the proposal on the left to simulate live FastMCP ingestion, CockroachDB 
     <section id="architecture" aria-labelledby="arch-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">03 / DISTRIBUTED SYSTEM OF RECORD</p>
+          <p class="eyebrow">04 / DISTRIBUTED SYSTEM OF RECORD</p>
           <h2 class="section-title" id="arch-title">End-to-End Autonomous Architecture</h2>
           <p class="section-desc">
             Decoupled serverless compute combined with globally resilient vector transactions.
@@ -328,7 +370,7 @@ Submit the proposal on the left to simulate live FastMCP ingestion, CockroachDB 
     <section id="repositories" aria-labelledby="repo-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">04 / OPEN-SOURCE REPOSITORIES</p>
+          <p class="eyebrow">05 / OPEN-SOURCE REPOSITORIES</p>
           <h2 class="section-title" id="repo-title">Modular Component Repositories</h2>
           <p class="section-desc">
             HiveContext is organized into focused, independent open-source repositories designed for high maintainability and simple deployment.
@@ -395,7 +437,7 @@ Submit the proposal on the left to simulate live FastMCP ingestion, CockroachDB 
     <section id="setup" aria-labelledby="setup-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">05 / AGENT INTEGRATION</p>
+          <p class="eyebrow">06 / AGENT INTEGRATION</p>
           <h2 class="section-title" id="setup-title">Connect Any MCP-Compatible Client</h2>
           <p class="section-desc">
             Add the HiveContext server configuration to your AI coding assistant configuration file.
