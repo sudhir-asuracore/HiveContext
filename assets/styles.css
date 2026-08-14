@@ -940,6 +940,39 @@ section {
   font-weight: bold;
 }
 
+.scenario-token-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+}
+
+.scenario-token-footer .token-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.scenario-token-footer .token-value {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.scenario-card.silo .scenario-token-footer .token-value {
+  color: #ef4444;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.scenario-card.hive .scenario-token-footer .token-value {
+  color: #10b981;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
 /* Footer */
 footer {
   padding: 48px 0;
