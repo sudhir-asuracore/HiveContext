@@ -19,6 +19,7 @@
       </a>
       <nav aria-label="Primary Navigation">
         <a href="#overview">Overview</a>
+        <a href="#taxonomy">Memory Taxonomy</a>
         <a href="#demo">Live Memory Loop</a>
         <a href="#architecture">Architecture</a>
         <a href="#repositories">Modules</a>
@@ -68,11 +69,112 @@
       </div>
     </section>
 
+    <!-- Memory Taxonomy Section -->
+    <section id="taxonomy" aria-labelledby="taxonomy-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">01 / THE AGENT MEMORY TAXONOMY</p>
+          <h2 class="section-title" id="taxonomy-title">Local Agent Memory vs. HiveContext Procedural Memory</h2>
+          <p class="section-desc">
+            Single-agent memory operates in an isolated silo. HiveContext introduces organization-level <strong>procedural memory</strong> to enhance the collective intelligence of every developer's AI assistant.
+          </p>
+        </div>
+
+        <div class="taxonomy-table-wrapper">
+          <table class="taxonomy-table">
+            <thead>
+              <tr>
+                <th>Memory Dimension</th>
+                <th>Storage Layer</th>
+                <th>Scope</th>
+                <th>Purpose &amp; Engineering Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Short-Term Memory</strong></td>
+                <td><span class="badge-tag badge-local">Local RAM</span></td>
+                <td>Single session (Human + Agent)</td>
+                <td>Scratchpad, active conversation buffer, prompt AST diffs.</td>
+              </tr>
+              <tr>
+                <td><strong>Semantic Memory</strong></td>
+                <td><span class="badge-tag badge-local">Local Vector Index</span></td>
+                <td>Single agent</td>
+                <td>Codebase token definitions, language semantics, local grep embeddings.</td>
+              </tr>
+              <tr>
+                <td><strong>Episodic Memory</strong></td>
+                <td><span class="badge-tag badge-local">Agent Session DB</span></td>
+                <td>Single developer history</td>
+                <td>"What was I working on yesterday in branch feature/auth?"</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>Procedural Memory (HiveContext)</strong></td>
+                <td><span class="badge-tag badge-hive">CockroachDB + FastMCP</span></td>
+                <td><strong>Multi-Agent / Entire 10+ Team</strong></td>
+                <td><strong>"How does our team write code, handle incidents, structure APIs, and make architectural tradeoffs?"</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 10-Engineer Scenario Comparison -->
+        <div class="scenario-grid">
+          <div class="scenario-card silo">
+            <h3 style="color: #ef4444;">
+              <span>❌</span> Without HiveContext (Isolated Agent Silos)
+            </h3>
+            <p>
+              Imagine 10 software engineers working on the same monorepo with isolated agent memories:
+            </p>
+            <ul>
+              <li>
+                <span class="icon">⚠️</span>
+                <span><strong>Repeated Trial &amp; Error:</strong> Engineer #1's agent spends 30 mins fixing a database retry bug. Tomorrow, Engineer #4's agent repeats the exact same painful experimentation.</span>
+              </li>
+              <li>
+                <span class="icon">💸</span>
+                <span><strong>Massive Token Waste:</strong> Repetitive cycles of hallucination, undoing, redoing, and fixing errors across team sessions.</span>
+              </li>
+              <li>
+                <span class="icon">⚡</span>
+                <span><strong>Architectural Drift:</strong> Different agents produce fragmented, incompatible conventions and inconsistent patterns.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="scenario-card hive">
+            <h3 style="color: #10b981;">
+              <span>🐝</span> With HiveContext (Procedural Collective Intelligence)
+            </h3>
+            <p>
+              A single shared intelligence ledger powering all 10 developer assistants:
+            </p>
+            <ul>
+              <li>
+                <span class="icon">✨</span>
+                <span><strong>Single-Step Convergence:</strong> When Engineer #1's agent resolves a tricky issue, it persists a governed post-mortem or convention.</span>
+              </li>
+              <li>
+                <span class="icon">🛡️</span>
+                <span><strong>Smarter Targeted Brain:</strong> Seconds later, Engineer #4's agent executes a pre-task search and instantly applies the proven fix.</span>
+              </li>
+              <li>
+                <span class="icon">🚀</span>
+                <span><strong>Maximized Velocity:</strong> Directly cuts token consumption, removes undo-redo loops, and ensures strict org-wide consistency.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Metrics Row -->
     <section id="invariants" aria-labelledby="metrics-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">01 / MEASURABLE INVARIANTS</p>
+          <p class="eyebrow">02 / MEASURABLE INVARIANTS</p>
           <h2 class="section-title" id="metrics-title">Engineered for resiliency &amp; scale.</h2>
         </div>
         <div class="metrics-grid">
@@ -104,7 +206,7 @@
     <section id="demo" class="demo-section" aria-labelledby="demo-title">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">02 / INTERACTIVE PLAYGROUND</p>
+          <p class="eyebrow">03 / INTERACTIVE PLAYGROUND</p>
           <h2 class="section-title" id="demo-title">Simulate the closed-loop memory lifecycle.</h2>
           <p class="section-desc">
             Test how an AI coding assistant proposes a new architectural convention, triggers semantic conflict analysis, passes through the dashboard approval gate, and gets recalled in future sessions.

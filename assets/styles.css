@@ -653,6 +653,131 @@ section {
   line-height: 1.6;
 }
 
+/* Memory Taxonomy & Comparison Table */
+.taxonomy-table-wrapper {
+  overflow-x: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  margin: 32px 0;
+}
+
+.taxonomy-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.taxonomy-table th, .taxonomy-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.taxonomy-table th {
+  background: #121212;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.taxonomy-table tr:last-child td {
+  border-bottom: none;
+}
+
+.taxonomy-table tr.highlight-row {
+  background: rgba(220, 38, 38, 0.06);
+  border-left: 3px solid var(--accent-red);
+}
+
+.taxonomy-table tr.highlight-row td {
+  color: #fff;
+  font-weight: 600;
+}
+
+.badge-tag {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.badge-local {
+  background: #1c1c1c;
+  color: #a3a3a3;
+  border: 1px solid #333;
+}
+
+.badge-hive {
+  background: var(--accent-red);
+  color: #fff;
+  box-shadow: 0 0 10px var(--accent-red-glow);
+}
+
+/* 10-Engineer Scenario Grid */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.scenario-card {
+  padding: 28px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scenario-card.silo {
+  border-left: 3px solid #ef4444;
+  background: #110909;
+}
+
+.scenario-card.hive {
+  border-left: 3px solid var(--accent-emerald);
+  background: #09120e;
+}
+
+.scenario-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scenario-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.scenario-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.scenario-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.scenario-card li span.icon {
+  font-weight: bold;
+}
+
 /* Footer */
 footer {
   padding: 48px 0;
@@ -672,7 +797,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 900px) {
-  .hero-grid, .demo-grid, .repo-grid, .metrics-grid {
+  .hero-grid, .demo-grid, .repo-grid, .metrics-grid, .scenario-grid {
     grid-template-columns: 1fr;
   }
   .topbar .nav-wrapper {
@@ -684,3 +809,4 @@ footer {
     gap: 12px;
   }
 }
+

@@ -66,13 +66,42 @@ HiveContext is architected into modular open-source repositories:
 
 ---
 
+## 🧠 The Agent Memory Taxonomy: Why HiveContext?
+
+Most agent memory discussions conflate **isolated agent memory** with **shared engineering context**:
+
+| Memory Dimension | Storage Layer | Scope | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Short-Term Memory** | Local RAM / Context Window | Single session (Human + Agent) | Scratchpad, active conversation buffer, AST diffs |
+| **Semantic Memory** | Local Vector Index / Embeddings | Single agent | Concept definitions, language semantics, codebase grep |
+| **Episodic Memory** | Local Agent Store / Session DB | Single developer history | "What was I working on yesterday in branch feature/auth?" |
+| **Procedural Memory (HiveContext)** | **Global CockroachDB Vector Ledger + FastMCP** | **Multi-Agent / Entire 10+ Engineer Team** | **"How does our team write code, handle incidents, structure APIs, and make architectural tradeoffs?"** |
+
+### 🐝 The 10-Engineer Problem & Collective Brain Power
+
+Imagine **10 software engineers** collaborating on the same monorepo, each pair programming with their own AI agent (Antigravity, Cursor, Claude):
+
+1. **Without HiveContext (Isolated Agent Silos)**:
+   - Engineer #1's agent encounters a non-trivial CockroachDB transaction retry bug, spends 30 minutes experimenting, wasting tokens, undoing and redoing code, before finally discovering the fix.
+   - Tomorrow, Engineer #4's agent encounters the *exact same problem* and repeats the *exact same 30-minute trial-and-error cycle*.
+   - Each agent operates in complete isolation, continuously re-learning the same hard lessons and producing inconsistent architectural styles.
+
+2. **With HiveContext (Procedural Collective Intelligence)**:
+   - When Engineer #1's agent solves the incident, it persists a **governed procedural memory** (`log_post_mortem` or `remember_convention`).
+   - The team lead approves it in the **HiveContext Dashboard**.
+   - Seconds later, when Engineer #4's agent initiates a task on that module, its pre-task `search_context` immediately recalls the proven solution.
+   - **Result**: All agents across the organization act as a **unified, smarter, targeted brain**—instantly cutting token consumption, eliminating trial-and-error rollback loops, and accelerating time-to-delivery.
+
+---
+
 ## 🚀 Key Features
 
-1. **Pre-Task Context Recall**: Agents run semantic searches before complex coding tasks to adhere to active conventions without manual prompt copying.
-2. **Human-in-the-Loop Governance**: Agent-proposed memories enter a pending state with automatic semantic conflict detection, requiring reviewer approval before mutation.
-3. **Multi-Tenant Scope Isolation**: Partition collective knowledge into `global` (organization-wide) or `project` scopes.
-4. **Resilient Vector Search**: Powered by CockroachDB v24.1+ distributed HNSW cosine vector index for sub-15ms recall.
-5. **Cost-Effective Serverless Compute**: Deployed on AWS Lambda Function URLs with SSE response streaming and automated 30-day recycle bin cleanup.
+1. **Procedural Memory Synchronization**: Gathers validated procedures and ADRs from one agent to enhance the collective intelligence of all team agents.
+2. **Eliminates Trial-and-Error Waste**: Prevents repetitive experimenting, undoing, and redoing across developers—driving straight to the team's approved approach.
+3. **Human-in-the-Loop Governance**: Agent-proposed memories enter a pending state with automatic semantic conflict detection, requiring reviewer approval before mutating team standards.
+4. **Multi-Tenant Scope Isolation**: Partition collective knowledge into `global` (organization-wide) or `project` scopes.
+5. **Sub-15ms Resilient Recall**: Powered by CockroachDB v24.1+ distributed HNSW cosine vector index.
+6. **Serverless Compute**: Deployed on AWS Lambda Function URLs with FastMCP SSE streaming and automated 30-day recycle bin cleanup.
 
 ---
 
