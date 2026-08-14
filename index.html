@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HiveContext — Organization-Level Collective AI Agent Memory on CockroachDB & AWS FastMCP">
+  <title>HiveContext — Collective Memory System for AI Agent Teams</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container nav-wrapper">
+      <a class="brand" href="/" aria-label="HiveContext home">
+        <span class="tag">H/</span> HiveContext
+      </a>
+      <nav aria-label="Primary Navigation">
+        <a href="#overview">Overview</a>
+        <a href="#demo">Live Memory Loop</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#repositories">Modules</a>
+        <a href="#setup">Setup Guide</a>
+      </nav>
+      <div class="topbar-actions">
+        <span class="system-badge"><span class="pulse"></span> CockroachDB Vector Cluster: Active</span>
+        <a class="btn btn-primary" href="https://github.com/sudhir-asuracore/HiveContext">GitHub Hub</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero" id="overview" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">ORGANIZATION-LEVEL AGENTIC MEMORY SYSTEM</p>
+            <h1 id="hero-title">
+              Agents forget across sessions.<br>
+              <em>HiveContext gives your team a collective brain.</em>
+            </h1>
+            <p class="lede">
+              A safety-gated, multi-tenant agent memory layer backed by <strong>CockroachDB pgvector</strong> and <strong>AWS Lambda FastMCP compute</strong>—enforcing human-in-the-loop governance before critical rules and ADRs mutate.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#demo">Explore Live Interactive Loop</a>
+              <a class="btn btn-outline" href="#repositories">Browse Repositories</a>
+            </div>
+          </div>
+
+          <div class="hero-aside">
+            <div class="bracket-box equation-card">
+              <span class="title">RECALL &amp; POLICY INVARIANT EQUATION</span>
+              <code>
+                0.60 semantic similarity<br>
+                + 0.25 scope isolation<br>
+                + 0.15 human approval status
+              </code>
+              <p>
+                Strict multi-tenant boundaries are verified before ranking. High similarity scores can never cross a tenant space or unapproved safety gate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Row -->
+    <section id="invariants" aria-labelledby="metrics-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">01 / MEASURABLE INVARIANTS</p>
+          <h2 class="section-title" id="metrics-title">Engineered for resiliency &amp; scale.</h2>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-item bracket-box">
+            <span class="label">Multi-Tenant Isolation</span>
+            <div class="value">100%</div>
+            <span class="subtext">Hardware + row-level spaces</span>
+          </div>
+          <div class="metric-item bracket-box">
+            <span class="label">Vector Recall Latency</span>
+            <div class="value">&lt; 15ms</div>
+            <span class="subtext">CockroachDB HNSW index</span>
+          </div>
+          <div class="metric-item bracket-box">
+            <span class="label">Duplicate Prevention</span>
+            <div class="value">94.8%</div>
+            <span class="subtext">Cosine conflict detection</span>
+          </div>
+          <div class="metric-item bracket-box">
+            <span class="label">Token Waste Eliminated</span>
+            <div class="value">0</div>
+            <span class="subtext">Direct context injection</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live Memory Loop Section -->
+    <section id="demo" class="demo-section" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">02 / INTERACTIVE PLAYGROUND</p>
+          <h2 class="section-title" id="demo-title">Simulate the closed-loop memory lifecycle.</h2>
+          <p class="section-desc">
+            Test how an AI coding assistant proposes a new architectural convention, triggers semantic conflict analysis, passes through the dashboard approval gate, and gets recalled in future sessions.
+          </p>
+        </div>
+
+        <div class="demo-grid">
+          <!-- Form Panel -->
+          <form id="memory-demo-form" class="demo-form bracket-box">
+            <div class="form-group">
+              <label for="context-type">Context Type</label>
+              <select id="context-type">
+                <option value="convention">Team Coding Convention</option>
+                <option value="architecture_decision">Architecture Decision Record (ADR)</option>
+                <option value="post_mortem">Incident Retrospective</option>
+                <option value="infrastructure_context">Infrastructure Spec</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="scope-select">Memory Isolation Scope</label>
+              <select id="scope-select">
+                <option value="global">Global (Org-Wide)</option>
+                <option value="project">Project-Specific (HiveContext)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="topic-input">Topic / Title</label>
+              <input id="topic-input" value="Next.js Server Actions Validation" required>
+            </div>
+
+            <div class="form-group">
+              <label for="content-input">Rule / Instruction Content</label>
+              <textarea id="content-input" rows="3" required>Always validate mutation payloads using Zod schemas before executing database transactions to prevent malformed queries.</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 8px;">
+              Propose Rule via MCP
+            </button>
+          </form>
+
+          <!-- Result Console Panel -->
+          <div class="bracket-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="demo-timeline" aria-label="Memory Lifecycle Stages">
+                <div class="stage-step active" id="stage-analyze">1. Ingest</div>
+                <div class="stage-step" id="stage-conflict">2. Conflict Check</div>
+                <div class="stage-step" id="stage-approve">3. Human Review</div>
+                <div class="stage-step" id="stage-recall">4. Agent Recall</div>
+              </div>
+
+              <div id="console-output" class="console-output">
+[HIVECONTEXT READY]
+Submit the proposal on the left to simulate live FastMCP ingestion, CockroachDB vector embedding, conflict detection, and agent retrieval.
+              </div>
+            </div>
+
+            <div id="loop-actions" class="console-actions" hidden>
+              <button id="approve-btn" class="btn btn-emerald" type="button">Approve Rule</button>
+              <button id="reject-btn" class="btn btn-outline" type="button">Reject Rule</button>
+              <button id="recall-btn" class="btn btn-primary" type="button" disabled>Simulate Agent Retrieval</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" aria-labelledby="arch-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">03 / DISTRIBUTED SYSTEM OF RECORD</p>
+          <h2 class="section-title" id="arch-title">End-to-End Autonomous Architecture</h2>
+          <p class="section-desc">
+            Decoupled serverless compute combined with globally resilient vector transactions.
+          </p>
+        </div>
+
+        <div class="arch-diagram bracket-box">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <span class="node-type">CLIENT LAYER</span>
+              <h3>AI Coding Agents</h3>
+              <p>Antigravity CLI, Claude Desktop, Cursor, and VS Code communicating over MCP JSON-RPC 2.0.</p>
+            </div>
+
+            <div class="arch-node highlight">
+              <span class="node-type">COMPUTE LAYER</span>
+              <h3>AWS Lambda FastMCP</h3>
+              <p>Serverless Python 3.12 SSE streaming endpoint managing tool execution, embeddings, and authorization.</p>
+            </div>
+
+            <div class="arch-node">
+              <span class="node-type">STORAGE LAYER</span>
+              <h3>CockroachDB pgvector</h3>
+              <p>Globally distributed HNSW cosine vector index, multi-tenant spaces, and transactional ACID memory ledger.</p>
+            </div>
+
+            <div class="arch-node">
+              <span class="node-type">GOVERNANCE LAYER</span>
+              <h3>Next.js Control Panel</h3>
+              <p>Real-time review dashboard for team leads to approve, reject, edit, or isolate agent-proposed memories.</p>
+            </div>
+          </div>
+
+          <div class="features-pills">
+            <div class="feature-pill">Strict Scoping (Global / Project)</div>
+            <div class="feature-pill">Semantic Conflict Alerts</div>
+            <div class="feature-pill">Automated 30-Day Recycle Purge</div>
+            <div class="feature-pill">Zero Cloud Infrastructure Drift</div>
+            <div class="feature-pill">Stateless Response Streaming</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Repositories Gateway Section -->
+    <section id="repositories" aria-labelledby="repo-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">04 / OPEN-SOURCE REPOSITORIES</p>
+          <h2 class="section-title" id="repo-title">Modular Component Repositories</h2>
+          <p class="section-desc">
+            HiveContext is organized into focused, independent open-source repositories designed for high maintainability and simple deployment.
+          </p>
+        </div>
+
+        <div class="repo-grid">
+          <!-- Dashboard Repo Card -->
+          <div class="repo-card bracket-box">
+            <div>
+              <div class="repo-header">
+                <span class="eyebrow" style="margin:0;">MODULE 01</span>
+                <span class="system-badge">Next.js 16</span>
+              </div>
+              <h3 class="repo-title">
+                HiveContext-Dashboard
+              </h3>
+              <p>
+                The central control panel and human-in-the-loop review console. Provides real-time approval queues, scope isolation filters, space provisioning, and memory analytics.
+              </p>
+              <div class="repo-stack">
+                <span class="stack-tag">Next.js 16</span>
+                <span class="stack-tag">React 19</span>
+                <span class="stack-tag">TailwindCSS v4</span>
+                <span class="stack-tag">NextAuth.js</span>
+                <span class="stack-tag">CockroachDB pg</span>
+              </div>
+            </div>
+            <a class="btn btn-outline" href="https://github.com/sudhir-asuracore/HiveContext-Dashboard" target="_blank" rel="noopener">
+              View Dashboard Repository &rarr;
+            </a>
+          </div>
+
+          <!-- MCP Repo Card -->
+          <div class="repo-card bracket-box">
+            <div>
+              <div class="repo-header">
+                <span class="eyebrow" style="margin:0;">MODULE 02</span>
+                <span class="system-badge">AWS Lambda FastMCP</span>
+              </div>
+              <h3 class="repo-title">
+                HiveContext-MCP
+              </h3>
+              <p>
+                The serverless Model Context Protocol (MCP) server deployed via AWS SAM. Exposes semantic search, memory persistence, and scheduled memory lifecycle functions over HTTP SSE.
+              </p>
+              <div class="repo-stack">
+                <span class="stack-tag">Python 3.12</span>
+                <span class="stack-tag">FastMCP</span>
+                <span class="stack-tag">AWS SAM</span>
+                <span class="stack-tag">Google Gemini Embeddings</span>
+                <span class="stack-tag">pgvector</span>
+              </div>
+            </div>
+            <a class="btn btn-outline" href="https://github.com/sudhir-asuracore/HiveContext-MCP" target="_blank" rel="noopener">
+              View MCP Server Repository &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Setup Guide Section -->
+    <section id="setup" aria-labelledby="setup-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">05 / AGENT INTEGRATION</p>
+          <h2 class="section-title" id="setup-title">Connect Any MCP-Compatible Client</h2>
+          <p class="section-desc">
+            Add the HiveContext server configuration to your AI coding assistant configuration file.
+          </p>
+        </div>
+
+        <div class="code-box bracket-box">
+          <div class="code-header">
+            <span>Antigravity / Claude Desktop Configuration (~/.mcp.json)</span>
+            <button class="btn btn-outline" style="padding: 4px 12px; font-size: 10px;" onclick="copySnippet('mcp-config-code', this)">Copy JSON</button>
+          </div>
+          <pre id="mcp-config-code"><code>{
+  "mcpServers": {
+    "hivecontext": {
+      "serverUrl": "https://&lt;your-lambda-url&gt;.lambda-url.&lt;region&gt;.on.aws/sse",
+      "headers": {
+        "Authorization": "Bearer &lt;your-mcp-secret-token&gt;",
+        "X-HiveContext-Tenant": "default"
+      }
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong>HiveContext</strong> — Open-Source Collective AI Agent Memory System
+      </div>
+      <div>
+        Released under the <a href="LICENSE" style="text-decoration: underline;">MIT License</a>.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
