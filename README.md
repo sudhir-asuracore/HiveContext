@@ -10,14 +10,14 @@ It bridges the gap between fragmented developer AI sessions by persisting approv
 
 ---
 
-## 🌐 Live Interactive Showcase & Documentation
+## Live Interactive Showcase & Documentation
 
 Experience the live interactive closed-loop memory lifecycle:  
-👉 **[Launch Interactive GitHub Pages Demo](https://sudhir-asuracore.github.io/HiveContext/)**
+**[Launch Interactive GitHub Pages Demo](https://sudhir-asuracore.github.io/HiveContext/)**
 
 ---
 
-## 🧩 Architecture Overview
+## Architecture Overview
 
 ```mermaid
 flowchart LR
@@ -55,18 +55,18 @@ flowchart LR
 
 ---
 
-## 📦 Modular Component Repositories
+## Modular Component Repositories
 
 HiveContext is architected into modular open-source repositories:
 
 | Repository | Description | Key Technologies |
 | :--- | :--- | :--- |
-| 🎛️ **[HiveContext-Dashboard](https://github.com/sudhir-asuracore/HiveContext-Dashboard)** | Central management console for team leads and developers to review, approve, scope, and monitor collective memory. | Next.js 16, React 19, TailwindCSS v4, NextAuth.js, pg |
-| ⚡ **[HiveContext-MCP](https://github.com/sudhir-asuracore/HiveContext-MCP)** | Serverless Model Context Protocol (MCP) server providing RAG vector search, memory persistence, and auto-purge cron on AWS Lambda. | Python 3.12, FastMCP, AWS SAM, Google Gemini API, CockroachDB |
+| **[HiveContext-Dashboard](https://github.com/sudhir-asuracore/HiveContext-Dashboard)** | Central management console for team leads and developers to review, approve, scope, and monitor collective memory. | Next.js 16, React 19, TailwindCSS v4, NextAuth.js, pg |
+| **[HiveContext-MCP](https://github.com/sudhir-asuracore/HiveContext-MCP)** | Serverless Model Context Protocol (MCP) server providing RAG vector search, memory persistence, and auto-purge cron on AWS Lambda. | Python 3.12, FastMCP, AWS SAM, Google Gemini API, CockroachDB |
 
 ---
 
-## 🧠 The Agent Memory Taxonomy: Why HiveContext?
+## The Agent Memory Taxonomy: Why HiveContext?
 
 Most agent memory discussions conflate **isolated agent memory** with **shared engineering context**:
 
@@ -77,7 +77,7 @@ Most agent memory discussions conflate **isolated agent memory** with **shared e
 | **Episodic Memory** | Local Agent Store / Session DB | Single developer history | "What was I working on yesterday in branch feature/auth?" |
 | **Procedural Memory (HiveContext)** | **Global CockroachDB Vector Ledger + FastMCP** | **Multi-Agent / Entire 10+ Engineer Team** | **"How does our team write code, handle incidents, structure APIs, and make architectural tradeoffs?"** |
 
-### 🐝 The 10-Engineer Problem & Collective Brain Power
+### The 10-Engineer Problem & Collective Brain Power
 
 Imagine **10 software engineers** collaborating on the same monorepo, each pair programming with their own AI agent (Antigravity, Cursor, Claude):
 
@@ -94,7 +94,7 @@ Imagine **10 software engineers** collaborating on the same monorepo, each pair 
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 1. **Procedural Memory Synchronization**: Gathers validated procedures and ADRs from one agent to enhance the collective intelligence of all team agents.
 2. **Eliminates Trial-and-Error Waste**: Prevents repetitive experimenting, undoing, and redoing across developers—driving straight to the team's approved approach.
@@ -105,7 +105,7 @@ Imagine **10 software engineers** collaborating on the same monorepo, each pair 
 
 ---
 
-## 🛠️ Quick Client Setup (`~/.mcp.json`)
+## Quick Client Setup (`~/.mcp.json`)
 
 Add the HiveContext server to your AI assistant configuration:
 
@@ -125,7 +125,7 @@ Add the HiveContext server to your AI assistant configuration:
 
 ---
 
-## 📄 License & Contributing
+## License & Contributing
 
 - **License**: Released under the [MIT License](LICENSE).
 - **Contributing**: Please see [CONTRIBUTING.md](CONTRIBUTING.md) for local development and pull request guidelines.
